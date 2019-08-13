@@ -1,5 +1,6 @@
 import SimpleMDE from 'simplemde';
 import 'simplemde/dist/simplemde.min.css';
+import Adsense from 'vue-google-adsense/dist/Adsense.min.js'
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -18,6 +19,9 @@ require('./bootstrap');
  */
 const files = require.context('./', true, /\.vue$/i);
 files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
+
+Vue.use(require('vue-script2'));
+Vue.use(Adsense);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -57,7 +61,7 @@ const app = new Vue({
             const dropdowns = document.getElementsByClassName('dropdown');
             // turn the html collection into an array and loop
             Array.from(dropdowns).forEach(dropdown => {
-                    dropdown.addEventListener('click', (e) => {
+                dropdown.addEventListener('click', (e) => {
                     e.preventDefault();
                     e.stopPropagation();
                     // hide any currently active subnavs
@@ -94,7 +98,7 @@ const app = new Vue({
             const closeAlertButtons = document.querySelectorAll('.alert .close');
             // turn the html collection into an array and loop
             Array.from(closeAlertButtons).forEach(button => {
-                button.addEventListener('click', function(e) {
+                button.addEventListener('click', function (e) {
                     e.target.parentNode.parentNode.remove();
                 });
             });
